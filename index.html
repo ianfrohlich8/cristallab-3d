@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CristalLab 3D</title>
+  </head>
+  <body>
+    <div id="app">
+      <aside class="panel panel-left">
+        <header class="brand">
+          <div class="brand-mark">3D</div>
+          <div>
+            <h1>CristalLab</h1>
+            <p>Redes, empaquetamiento y Miller</p>
+          </div>
+        </header>
+
+        <section class="control-block">
+          <div class="block-heading">
+            <span>Sistema cristalino</span>
+          </div>
+          <div id="systemButtons" class="button-grid"></div>
+        </section>
+
+        <section class="control-block">
+          <label class="field-label" for="structureSelect">Estructura cúbica</label>
+          <select id="structureSelect" class="select-input">
+            <option value="sc">Cúbica simple</option>
+            <option value="bcc">Cúbica centrada en el cuerpo</option>
+            <option value="fcc">Cúbica centrada en las caras</option>
+          </select>
+        </section>
+
+        <section class="control-block">
+          <label class="field-label" for="repeatSelect">Celdas visibles</label>
+          <select id="repeatSelect" class="select-input">
+            <option value="single">1 × 1 × 1</option>
+            <option value="sheet">2 × 2 × 1</option>
+            <option value="block2" selected>2 × 2 × 2</option>
+            <option value="block3">3 × 3 × 2</option>
+          </select>
+        </section>
+
+        <section class="control-block">
+          <label class="field-label" for="referenceAtomSelect">Átomo de referencia (clic en 3D)</label>
+          <select id="referenceAtomSelect" class="select-input"></select>
+        </section>
+
+        <section class="control-block">
+          <div class="block-heading">
+            <span>Capas visuales</span>
+          </div>
+          <label class="toggle-row">
+            <input id="packingToggle" type="checkbox" checked />
+            <span>Empaquetamiento</span>
+          </label>
+          <label class="toggle-row">
+            <input id="planeToggle" type="checkbox" checked />
+            <span>Plano cristalográfico</span>
+          </label>
+          <label class="toggle-row">
+            <input id="axisToggle" type="checkbox" checked />
+            <span>Ejes de la celda</span>
+          </label>
+          <label class="toggle-row">
+            <input id="coordinationToggle" type="checkbox" checked />
+            <span>Coordinación</span>
+          </label>
+        </section>
+
+        <section class="control-block">
+          <div class="block-heading">
+            <span>Índices de Miller</span>
+            <output id="millerOutput" class="miller-pill">(1 1 1)</output>
+          </div>
+          <div class="miller-controls">
+            <label>
+              <span>h</span>
+              <input id="hInput" type="number" min="-4" max="4" value="1" />
+              <input id="hRange" type="range" min="-4" max="4" value="1" />
+            </label>
+            <label>
+              <span>k</span>
+              <input id="kInput" type="number" min="-4" max="4" value="1" />
+              <input id="kRange" type="range" min="-4" max="4" value="1" />
+            </label>
+            <label>
+              <span>l</span>
+              <input id="lInput" type="number" min="-4" max="4" value="1" />
+              <input id="lRange" type="range" min="-4" max="4" value="1" />
+            </label>
+          </div>
+        </section>
+      </aside>
+
+      <main class="viewer-shell">
+        <div class="viewer-topbar">
+          <div>
+            <span class="eyebrow">Plano actual</span>
+            <strong id="planeTitle">(1 1 1)</strong>
+          </div>
+          <button id="resetView" class="icon-button" title="Recentrar vista" aria-label="Recentrar vista">
+            ↺
+          </button>
+        </div>
+        <div id="sceneContainer" class="scene-container"></div>
+        <section class="plane-inspector" aria-labelledby="planeInspectorTitle">
+          <div>
+            <span class="eyebrow">Vista del plano</span>
+            <h2 id="planeInspectorTitle">Densidad planar</h2>
+            <div class="plane-slice-view">
+              <svg id="planeSliceSvg" role="img" aria-label="Vista 2D del plano con átomos cortados"></svg>
+            </div>
+          </div>
+          <div class="plane-inspector-data">
+            <div class="metric-grid plane-density-grid">
+              <div>
+                <span>Centros cortados</span>
+                <strong id="planeAtomsCount">0</strong>
+              </div>
+              <div>
+                <span>Contribución</span>
+                <strong id="planeEffectiveAtoms">0</strong>
+              </div>
+              <div>
+                <span>Área del corte</span>
+                <strong id="planeArea">0 u²</strong>
+              </div>
+              <div>
+                <span>ρ planar</span>
+                <strong id="planarDensity">0</strong>
+              </div>
+            </div>
+            <p id="planeSliceCaption" class="formula-text">
+              La vista proyecta el plano seleccionado y resalta los centros atómicos que quedan sobre él.
+            </p>
+            <p id="planeAreaFormula" class="formula-text area-formula">
+              A = área del polígono del plano.
+            </p>
+          </div>
+        </section>
+        <div class="legend" aria-label="Leyenda">
+          <span><i class="swatch swatch-cell"></i>Celda</span>
+          <span><i class="swatch swatch-atom"></i>Átomos</span>
+          <span><i class="swatch swatch-cut"></i>Átomos cortados</span>
+          <span><i class="swatch swatch-coordination"></i>Coordinación</span>
+          <span><i class="swatch swatch-plane"></i>Plano</span>
+          <span><i class="swatch swatch-normal"></i>Normal</span>
+        </div>
+      </main>
+
+      <aside class="panel panel-right">
+        <section class="data-block">
+          <span class="eyebrow">Sistema</span>
+          <h2 id="systemName">Cúbico</h2>
+          <p id="systemSummary" class="summary-text"></p>
+          <div id="cellParams" class="param-grid"></div>
+        </section>
+
+        <section class="data-block">
+          <span class="eyebrow">Estructura</span>
+          <h2 id="structureName">Cúbica simple</h2>
+          <div class="metric-grid">
+            <div>
+              <span>Átomos/celda</span>
+              <strong id="atomsPerCell">1</strong>
+            </div>
+            <div>
+              <span>Coordinación teórica</span>
+              <strong id="coordination">6</strong>
+            </div>
+            <div>
+              <span>Celdas visibles</span>
+              <strong id="visibleCells">2 × 2 × 2</strong>
+            </div>
+            <div>
+              <span>Vecinos señalados</span>
+              <strong id="visibleNeighbors">6</strong>
+            </div>
+          </div>
+          <p id="referenceAtomLabel" class="formula-text reference-atom-note">Referencia automática</p>
+          <div class="packing-meter">
+            <div class="meter-label">
+              <span>Factor de empaquetamiento</span>
+              <strong id="apfValue">52%</strong>
+            </div>
+            <div class="meter-track"><span id="apfBar"></span></div>
+          </div>
+          <p id="radiusRelation" class="formula-text">r = a / 2</p>
+        </section>
+
+        <section class="data-block">
+          <span class="eyebrow">Plano cristalográfico</span>
+          <h2 id="planeEquation">x + y + z = 1</h2>
+          <div id="intercepts" class="intercepts"></div>
+          <p id="millerRule" class="formula-text">
+            Los índices se obtienen tomando los inversos de las intersecciones y reduciendo a enteros.
+          </p>
+        </section>
+      </aside>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

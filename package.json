@@ -1,0 +1,29 @@
+{
+  "name": "quim-codex",
+  "version": "1.0.0",
+  "description": "Visualizador 3D interactivo de celdas unitarias, sistemas cristalinos, planos de Miller y densidad planar.",
+  "main": "src/main.js",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "check:visual": "node scripts/visual-check.mjs",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "keywords": [
+    "crystallography",
+    "threejs",
+    "miller-indices",
+    "chemistry",
+    "materials-science"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "three": "^0.184.0",
+    "vite": "^8.0.12"
+  },
+  "devDependencies": {
+    "playwright": "^1.60.0"
+  }
+}
