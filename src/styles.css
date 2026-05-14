@@ -163,6 +163,10 @@ button {
   font-weight: 750;
 }
 
+.stacked-field {
+  margin-top: 12px;
+}
+
 .select-input,
 .miller-controls input[type="number"] {
   width: 100%;
@@ -315,6 +319,18 @@ button {
 
 .swatch-coordination {
   background: #7a4cc2;
+}
+
+.swatch-octahedral {
+  background: #00a7b5;
+}
+
+.swatch-tetrahedral {
+  background: #cf4ba4;
+}
+
+.swatch-cubic-site {
+  background: #5867d8;
 }
 
 .swatch-plane {

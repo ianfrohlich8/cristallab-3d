@@ -21,7 +21,7 @@ for (const target of targets) {
 
   await page.goto("http://127.0.0.1:5173/", { waitUntil: "networkidle" });
   await page.waitForSelector("canvas");
-  await page.waitForTimeout(700);
+  await page.waitForTimeout(1500);
 
   const screenshot = path.join(outDir, `${target.name}.png`);
   await page.screenshot({ path: screenshot, fullPage: true });

@@ -16,6 +16,7 @@ Permite estudiar celdas unitarias, sistemas cristalinos, estructuras cubicas, em
 - Resaltado de atomos cortados por el plano.
 - Numero de coordinacion teorico y vecinos señalados.
 - Seleccion del atomo de referencia haciendo clic directamente sobre atomos del visor 3D.
+- Visualizacion de sitios intersticiales octaedricos, tetraedricos y cubicos.
 - Verificacion visual automatizada con Playwright.
 
 ## Captura conceptual
@@ -82,6 +83,7 @@ La verificacion:
 4. Ajusta los indices de Miller `(h k l)` para cambiar el plano.
 5. Observa la vista 2D del plano, los atomos cortados, el area y la densidad planar.
 6. Haz clic en un atomo del modelo 3D para usarlo como referencia de coordinacion.
+7. Activa los sitios intersticiales y filtra entre octaedricos, tetraedricos o cubicos.
 
 ## Conceptos incluidos
 
@@ -118,6 +120,18 @@ A = 1/2 * sum |(v_i - v_0) x (v_{i+1} - v_0)|
 ### Numero de coordinacion
 
 El numero de coordinacion se muestra como valor teorico y tambien visualmente con lineas/halos alrededor del atomo de referencia. Si el vecino esta fuera del bloque visible, se representa como vecino virtual para conservar la coordinacion ideal de la red.
+
+### Sitios intersticiales
+
+Los sitios intersticiales se muestran como marcadores pequeños dentro de la red cristalina:
+
+```text
+Octaedrico: hueco coordinado por 6 atomos
+Tetraedrico: hueco coordinado por 4 atomos
+Cubico: hueco coordinado por 8 atomos
+```
+
+La app permite mostrar todos los sitios o filtrar por tipo. En estructuras FCC y BCC se muestran huecos octaedricos y tetraedricos; en cubica simple se muestra el hueco cubico central.
 
 ## Estructura del proyecto
 

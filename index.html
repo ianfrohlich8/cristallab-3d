@@ -67,6 +67,17 @@
             <input id="coordinationToggle" type="checkbox" checked />
             <span>Coordinación</span>
           </label>
+          <label class="toggle-row">
+            <input id="interstitialToggle" type="checkbox" checked />
+            <span>Sitios intersticiales</span>
+          </label>
+          <label class="field-label stacked-field" for="interstitialSelect">Tipo de sitio</label>
+          <select id="interstitialSelect" class="select-input">
+            <option value="all">Todos</option>
+            <option value="octahedral">Octaédricos</option>
+            <option value="tetrahedral">Tetraédricos</option>
+            <option value="cubic">Cúbicos</option>
+          </select>
         </section>
 
         <section class="control-block">
@@ -145,6 +156,9 @@
           <span><i class="swatch swatch-atom"></i>Átomos</span>
           <span><i class="swatch swatch-cut"></i>Átomos cortados</span>
           <span><i class="swatch swatch-coordination"></i>Coordinación</span>
+          <span><i class="swatch swatch-octahedral"></i>Octaédricos</span>
+          <span><i class="swatch swatch-tetrahedral"></i>Tetraédricos</span>
+          <span><i class="swatch swatch-cubic-site"></i>Cúbicos</span>
           <span><i class="swatch swatch-plane"></i>Plano</span>
           <span><i class="swatch swatch-normal"></i>Normal</span>
         </div>
@@ -178,8 +192,19 @@
               <span>Vecinos señalados</span>
               <strong id="visibleNeighbors">6</strong>
             </div>
+            <div>
+              <span>Sitios visibles</span>
+              <strong id="interstitialCount">0</strong>
+            </div>
+            <div>
+              <span>Tipo intersticial</span>
+              <strong id="interstitialType">Todos</strong>
+            </div>
           </div>
           <p id="referenceAtomLabel" class="formula-text reference-atom-note">Referencia automática</p>
+          <p id="interstitialNote" class="formula-text reference-atom-note">
+            Los sitios intersticiales marcan posiciones libres entre átomos.
+          </p>
           <div class="packing-meter">
             <div class="meter-label">
               <span>Factor de empaquetamiento</span>

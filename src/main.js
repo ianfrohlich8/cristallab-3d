@@ -116,6 +116,81 @@ const structures = {
   },
 };
 
+const interstitialTypeLabels = {
+  all: "Todos",
+  octahedral: "Octaédricos",
+  tetrahedral: "Tetraédricos",
+  cubic: "Cúbicos",
+};
+
+const interstitialTypeNotes = {
+  all: "Muestra los huecos disponibles típicos para la estructura seleccionada.",
+  octahedral: "Sitios rodeados idealmente por 6 átomos vecinos.",
+  tetrahedral: "Sitios rodeados idealmente por 4 átomos vecinos.",
+  cubic: "Sitios rodeados idealmente por 8 átomos vecinos.",
+};
+
+const interstitialSitesByStructure = {
+  sc: [
+    { frac: [0.5, 0.5, 0.5], type: "cubic", label: "Centro cúbico", coordination: 8 },
+  ],
+  bcc: [
+    { frac: [0.5, 0.5, 0], type: "octahedral", label: "Centro de cara", coordination: 6 },
+    { frac: [0.5, 0.5, 1], type: "octahedral", label: "Centro de cara", coordination: 6 },
+    { frac: [0.5, 0, 0.5], type: "octahedral", label: "Centro de cara", coordination: 6 },
+    { frac: [0.5, 1, 0.5], type: "octahedral", label: "Centro de cara", coordination: 6 },
+    { frac: [0, 0.5, 0.5], type: "octahedral", label: "Centro de cara", coordination: 6 },
+    { frac: [1, 0.5, 0.5], type: "octahedral", label: "Centro de cara", coordination: 6 },
+    { frac: [0.5, 0, 0], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [0.5, 1, 0], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [0.5, 0, 1], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [0.5, 1, 1], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [0, 0.5, 0], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [1, 0.5, 0], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [0, 0.5, 1], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [1, 0.5, 1], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [0, 0, 0.5], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [1, 0, 0.5], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [0, 1, 0.5], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [1, 1, 0.5], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [0.5, 0.25, 0], type: "tetrahedral", label: "Tetraedro", coordination: 4 },
+    { frac: [0.5, 0.75, 0], type: "tetrahedral", label: "Tetraedro", coordination: 4 },
+    { frac: [0.25, 0.5, 0], type: "tetrahedral", label: "Tetraedro", coordination: 4 },
+    { frac: [0.75, 0.5, 0], type: "tetrahedral", label: "Tetraedro", coordination: 4 },
+    { frac: [0.5, 0.25, 1], type: "tetrahedral", label: "Tetraedro", coordination: 4 },
+    { frac: [0.5, 0.75, 1], type: "tetrahedral", label: "Tetraedro", coordination: 4 },
+    { frac: [0.25, 0.5, 1], type: "tetrahedral", label: "Tetraedro", coordination: 4 },
+    { frac: [0.75, 0.5, 1], type: "tetrahedral", label: "Tetraedro", coordination: 4 },
+    { frac: [0.5, 0, 0.25], type: "tetrahedral", label: "Tetraedro", coordination: 4 },
+    { frac: [0.5, 0, 0.75], type: "tetrahedral", label: "Tetraedro", coordination: 4 },
+    { frac: [0.5, 1, 0.25], type: "tetrahedral", label: "Tetraedro", coordination: 4 },
+    { frac: [0.5, 1, 0.75], type: "tetrahedral", label: "Tetraedro", coordination: 4 },
+  ],
+  fcc: [
+    { frac: [0.5, 0.5, 0.5], type: "octahedral", label: "Centro del cuerpo", coordination: 6 },
+    { frac: [0.5, 0, 0], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [0.5, 1, 0], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [0.5, 0, 1], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [0.5, 1, 1], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [0, 0.5, 0], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [1, 0.5, 0], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [0, 0.5, 1], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [1, 0.5, 1], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [0, 0, 0.5], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [1, 0, 0.5], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [0, 1, 0.5], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [1, 1, 0.5], type: "octahedral", label: "Centro de arista", coordination: 6 },
+    { frac: [0.25, 0.25, 0.25], type: "tetrahedral", label: "Tetraedro", coordination: 4 },
+    { frac: [0.75, 0.25, 0.25], type: "tetrahedral", label: "Tetraedro", coordination: 4 },
+    { frac: [0.25, 0.75, 0.25], type: "tetrahedral", label: "Tetraedro", coordination: 4 },
+    { frac: [0.25, 0.25, 0.75], type: "tetrahedral", label: "Tetraedro", coordination: 4 },
+    { frac: [0.75, 0.75, 0.25], type: "tetrahedral", label: "Tetraedro", coordination: 4 },
+    { frac: [0.75, 0.25, 0.75], type: "tetrahedral", label: "Tetraedro", coordination: 4 },
+    { frac: [0.25, 0.75, 0.75], type: "tetrahedral", label: "Tetraedro", coordination: 4 },
+    { frac: [0.75, 0.75, 0.75], type: "tetrahedral", label: "Tetraedro", coordination: 4 },
+  ],
+};
+
 const repeatPresets = {
   single: { label: "1 × 1 × 1", dims: [1, 1, 1] },
   sheet: { label: "2 × 2 × 1", dims: [2, 2, 1] },
@@ -135,6 +210,8 @@ const state = {
   plane: true,
   axes: true,
   coordinationShell: true,
+  interstitials: true,
+  interstitialType: "all",
 };
 
 const ui = {
@@ -146,6 +223,8 @@ const ui = {
   planeToggle: document.querySelector("#planeToggle"),
   axisToggle: document.querySelector("#axisToggle"),
   coordinationToggle: document.querySelector("#coordinationToggle"),
+  interstitialToggle: document.querySelector("#interstitialToggle"),
+  interstitialSelect: document.querySelector("#interstitialSelect"),
   hInput: document.querySelector("#hInput"),
   kInput: document.querySelector("#kInput"),
   lInput: document.querySelector("#lInput"),
@@ -163,7 +242,10 @@ const ui = {
   coordination: document.querySelector("#coordination"),
   visibleCells: document.querySelector("#visibleCells"),
   visibleNeighbors: document.querySelector("#visibleNeighbors"),
+  interstitialCount: document.querySelector("#interstitialCount"),
+  interstitialType: document.querySelector("#interstitialType"),
   referenceAtomLabel: document.querySelector("#referenceAtomLabel"),
+  interstitialNote: document.querySelector("#interstitialNote"),
   apfValue: document.querySelector("#apfValue"),
   apfBar: document.querySelector("#apfBar"),
   radiusRelation: document.querySelector("#radiusRelation"),
@@ -267,6 +349,51 @@ const materials = {
     roughness: 0.4,
     metalness: 0.05,
   }),
+  interstitialOctahedral: new THREE.MeshStandardMaterial({
+    color: 0x00a7b5,
+    emissive: 0x004d57,
+    emissiveIntensity: 0.28,
+    transparent: true,
+    opacity: 0.9,
+    roughness: 0.28,
+    metalness: 0.05,
+  }),
+  interstitialTetrahedral: new THREE.MeshStandardMaterial({
+    color: 0xcf4ba4,
+    emissive: 0x5a123f,
+    emissiveIntensity: 0.3,
+    transparent: true,
+    opacity: 0.9,
+    roughness: 0.28,
+    metalness: 0.05,
+  }),
+  interstitialCubic: new THREE.MeshStandardMaterial({
+    color: 0x5867d8,
+    emissive: 0x1d2774,
+    emissiveIntensity: 0.24,
+    transparent: true,
+    opacity: 0.86,
+    roughness: 0.3,
+    metalness: 0.05,
+  }),
+  interstitialOctahedralShell: new THREE.MeshBasicMaterial({
+    color: 0x00a7b5,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.55,
+  }),
+  interstitialTetrahedralShell: new THREE.MeshBasicMaterial({
+    color: 0xcf4ba4,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.58,
+  }),
+  interstitialCubicShell: new THREE.MeshBasicMaterial({
+    color: 0x5867d8,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.52,
+  }),
   plane: new THREE.MeshStandardMaterial({
     color: 0xd69a20,
     transparent: true,
@@ -328,6 +455,7 @@ let activeCutAtoms = [];
 let activeAtoms = [];
 let activeAtomMeshes = [];
 let activeCoordination = null;
+let activeInterstitialSites = [];
 let activeAtomRadius = 0.2;
 let planeOffset = 1;
 let resizeFrame = 0;
@@ -560,6 +688,94 @@ function generateVisibleAtoms() {
   }
 
   return [...atoms.values()];
+}
+
+function selectedInterstitialSites() {
+  const sites = interstitialSitesByStructure[state.structureId] ?? [];
+  if (state.interstitialType === "all") return sites;
+  return sites.filter((site) => site.type === state.interstitialType);
+}
+
+function interstitialMaterialName(type, shell = false) {
+  if (type === "tetrahedral") return shell ? "interstitialTetrahedralShell" : "interstitialTetrahedral";
+  if (type === "cubic") return shell ? "interstitialCubicShell" : "interstitialCubic";
+  return shell ? "interstitialOctahedralShell" : "interstitialOctahedral";
+}
+
+function interstitialTypeName(type) {
+  return interstitialTypeLabels[type] ?? interstitialTypeLabels.all;
+}
+
+function interstitialSummary() {
+  if (!state.interstitials) return "Activa la capa para mostrar huecos entre átomos.";
+  if (activeInterstitialSites.length === 0) {
+    return `${currentStructure().short} no tiene sitios ${interstitialTypeName(state.interstitialType).toLowerCase()} definidos para esta vista.`;
+  }
+
+  const counts = activeInterstitialSites.reduce((total, site) => {
+    total[site.type] = (total[site.type] ?? 0) + 1;
+    return total;
+  }, {});
+  const parts = Object.entries(counts).map(([type, count]) => `${count} ${interstitialTypeName(type).toLowerCase()}`);
+  const selectedSites = selectedInterstitialSites();
+  const coordinationValues = [...new Set(selectedSites.map((site) => site.coordination))].sort((a, b) => a - b);
+  const coordinationText = coordinationValues.length > 0 ? ` Coordinación del hueco: ${coordinationValues.join("/")}.` : "";
+  return `${interstitialTypeNotes[state.interstitialType] ?? interstitialTypeNotes.all} Visibles: ${parts.join(", ")}.${coordinationText}`;
+}
+
+function generateVisibleInterstitialSites() {
+  const [nx, ny, nz] = currentRepeat().dims;
+  const sites = new Map();
+
+  for (let x = 0; x < nx; x += 1) {
+    for (let y = 0; y < ny; y += 1) {
+      for (let z = 0; z < nz; z += 1) {
+        const origin = [x, y, z];
+        selectedInterstitialSites().forEach((site) => {
+          const frac = addFrac(origin, site.frac);
+          const key = `${site.type}:${atomKey(frac)}`;
+          if (!sites.has(key)) {
+            sites.set(key, {
+              ...site,
+              frac,
+              key,
+              world: fracToWorld(frac),
+            });
+          }
+        });
+      }
+    }
+  }
+
+  return [...sites.values()];
+}
+
+function interstitialShellGeometry(type, radius) {
+  if (type === "tetrahedral") return new THREE.TetrahedronGeometry(radius * 1.95, 0);
+  if (type === "cubic") return new THREE.BoxGeometry(radius * 2.45, radius * 2.45, radius * 2.45);
+  return new THREE.OctahedronGeometry(radius * 1.9, 0);
+}
+
+function buildInterstitialSites(basis) {
+  if (!state.interstitials || activeInterstitialSites.length === 0) return;
+
+  const minEdge = Math.min(basis.a.length(), basis.b.length(), basis.c.length());
+  const maxRepeat = Math.max(...currentRepeat().dims);
+  const coreRadius = minEdge * (maxRepeat > 1 ? 0.052 : 0.07);
+  const coreGeometry = new THREE.SphereGeometry(coreRadius, 24, 16);
+
+  activeInterstitialSites.forEach((site) => {
+    const core = new THREE.Mesh(coreGeometry, materials[interstitialMaterialName(site.type)]);
+    core.position.copy(site.world);
+    core.renderOrder = 5;
+    core.userData.interstitialSite = site;
+    root.add(core);
+
+    const shell = new THREE.Mesh(interstitialShellGeometry(site.type, coreRadius), materials[interstitialMaterialName(site.type, true)]);
+    shell.position.copy(site.world);
+    shell.renderOrder = 5;
+    root.add(shell);
+  });
 }
 
 function buildCellEdges(basis) {
@@ -1084,11 +1300,13 @@ function rebuildScene() {
   activePlane = createPlaneData(activeCell);
   activeCutAtoms = getCutAtoms(activePlane);
   activeAtoms = generateVisibleAtoms();
+  activeInterstitialSites = generateVisibleInterstitialSites();
   activeCoordination = getCoordinationShell(activeAtoms);
   buildReferenceGrid();
   buildCellEdges(activeCell);
   buildPlane();
   buildAtoms(activeCell);
+  buildInterstitialSites(activeCell);
   buildCoordinationShell();
   buildAxes();
 }
@@ -1198,10 +1416,13 @@ function updatePanel() {
   ui.visibleNeighbors.textContent = activeCoordination
     ? `${activeCoordination.neighbors.length}/${activeCoordination.expected}`
     : "0";
+  ui.interstitialCount.textContent = state.interstitials ? `${activeInterstitialSites.length}` : "Ocultos";
+  ui.interstitialType.textContent = interstitialTypeName(state.interstitialType);
   renderReferenceAtomOptions();
   ui.referenceAtomLabel.textContent = activeCoordination
     ? `Referencia: ${atomDisplayLabel(activeCoordination.reference)}`
     : "Referencia no disponible";
+  ui.interstitialNote.textContent = interstitialSummary();
   ui.apfValue.textContent = `${Math.round(structure.apf * 100)}%`;
   ui.apfBar.style.width = `${structure.apf * 100}%`;
   ui.radiusRelation.textContent = structure.radiusRelation;
@@ -1328,6 +1549,16 @@ function attachEvents() {
 
   ui.coordinationToggle.addEventListener("change", (event) => {
     state.coordinationShell = event.target.checked;
+    updateEverything();
+  });
+
+  ui.interstitialToggle.addEventListener("change", (event) => {
+    state.interstitials = event.target.checked;
+    updateEverything();
+  });
+
+  ui.interstitialSelect.addEventListener("change", (event) => {
+    state.interstitialType = event.target.value;
     updateEverything();
   });
 
